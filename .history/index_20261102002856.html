@@ -1,0 +1,19 @@
+---
+layout: default
+title: 我的主页
+---
+
+<h1>📚 文档目录</h1>
+
+<ul>
+  {% for p in site.pages %}
+    {% comment %} 只抓取以 .md 结尾的文件，并排除自身首页和 README {% endcomment %}
+    {% if p.path contains '.md' and p.name != 'index.md' and p.name != 'README.md' %}
+      <li>
+        <a href="{{ p.url | relative_url }}">
+          {{ p.title | default: p.name }}
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
